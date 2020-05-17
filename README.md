@@ -19,7 +19,7 @@ pip3 install ansible==2.8.4 --user
 ```
  $ git clone https://github.com/genomics-geek/setup-wsl-ubuntu-playbook.git
  $ cd setup-wsl-ubuntu-playbook
- $ ansible-playbook setup.yml -i hosts -l local
+ $ ansible-playbook setup.yml -i hosts -l local -K
 ```
 
 ### What this includes:
@@ -27,7 +27,7 @@ pip3 install ansible==2.8.4 --user
 #### Languages
 
 + Python3
-+ GO
++ GO 1.14.3
 + Nim
 + Java
 

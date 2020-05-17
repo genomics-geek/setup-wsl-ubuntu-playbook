@@ -55,3 +55,13 @@
   tags:
     - languages
     - golang
+
+- name: install nim packages
+  become: true
+  apt:
+    state: latest
+    pkg:
+      - nim
+  tags:
+    - languages
+    - nimlang

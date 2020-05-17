@@ -1,0 +1,9 @@
+---
+- name: Setup WSL Ubuntu for a rich development environment
+  hosts: all
+
+  roles:
+    - initialize
+    - languages
+    - databases
+    - webdev

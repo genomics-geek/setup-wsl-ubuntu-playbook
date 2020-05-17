@@ -87,3 +87,14 @@
   tags:
     - languages
     - java
+
+- name: install perl version manager
+  git:
+    force: yes
+    accept_hostkey: yes
+    repo: "https://github.com/tokuhirom/plenv.git"
+    dest: "{{ lookup('env','HOME') }}/.plenv"
+    version: "master"
+  tags:
+    - languages
+    - perl

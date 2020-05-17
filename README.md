@@ -4,7 +4,8 @@ This will setup a new laptop for software development.
 
 ## Requirements:
 
-1. Ansible is installed.  Can do so by running:
+1. Ubuntu 18.04 is installed.
+2. Ansible is installed.  Can do so by running:
 
 ```
 sudo apt-get -y install python3-pip python3-dev libffi-dev libssl-dev

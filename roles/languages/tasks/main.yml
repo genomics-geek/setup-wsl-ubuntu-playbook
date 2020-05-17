@@ -65,3 +65,25 @@
   tags:
     - languages
     - nimlang
+
+- name: install java packages
+  become: true
+  apt:
+    state: latest
+    pkg:
+      - default-jre
+      - default-jdk
+  tags:
+    - languages
+    - java
+
+- name: install java version manager
+  git:
+    force: yes
+    accept_hostkey: yes
+    repo: "https://github.com/jenv/jenv.git"
+    dest: "{{ lookup('env','HOME') }}/.jenv"
+    version: "master"
+  tags:
+    - languages
+    - java

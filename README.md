@@ -1,6 +1,6 @@
 # Ansible playbook for automating a setup of a new Windows Subsystem Linux (Ubuntu) for a rich development experience
 
-This will setup a new laptop for software development.
+This will setup a new laptop for software development. 
 
 ## Requirements:
 
@@ -11,7 +11,7 @@ This will setup a new laptop for software development.
 ##### Running the ansible playbook:
 
 ```
- $ git clone https://github.com/genomics-geek/setup-macbook-playbook.git
+ $ git clone https://github.com/genomics-geek/setup-wsl-ubuntu-playbook.git
  $ cd setup-wsl-ubuntu-playbook
  $ ansible-playbook setup.yml -i hosts -l local
 ```

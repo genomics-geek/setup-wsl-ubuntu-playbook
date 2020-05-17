@@ -3,7 +3,7 @@
   hosts: all
 
   roles:
-    - initialize
-    - languages
-    - databases
-    - webdev
+    - initialize 
+    # - languages
+    # - databases
+    # - webdev

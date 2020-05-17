@@ -1,0 +1,52 @@
+--- 
+- name: Update and upgrade apt packages
+  become: true
+  apt:
+    upgrade: yes
+    update_cache: yes
+    cache_valid_time: 86400
+  tags:
+    - initialize
+
+- name: install core packages
+  become: true
+  apt:
+    state: latest
+    pkg:
+      - cmake
+      - openssl
+      - python3-pip
+      - tree
+  tags:
+    - initialize
+
+- name: Generate RSA Ed25519 Key
+  shell: "yes y | ssh-keygen -a 100 -t ed25519 -C '{{ inventory_hostname }}' -N '' -f $HOME/.ssh/id_ed25519"
+  args:
+    warn: false
+  tags:
+    - initialize
+
+- name: Generate RSA SSH Key
+  shell: "yes y | ssh-keygen -t rsa -b 4096 -C '{{ inventory_hostname }}' -N '' -f $HOME/.ssh/id_rsa"
+  args:
+    warn: false
+  tags:
+    - initialize
+
+# - name: Pull down dotfiles
+#   git:
+#     force: yes
+#     accept_hostkey: yes
+#     repo: "https://github.com/genomics-geek/dotfiles-wsl-ubuntu.git"
+#     dest: "{{ lookup('env','HOME') }}/.dotfiles"
+#     version: "master"
+#   tags:
+#     - initialize
+
+# - name: initialize dot files
+#   shell: "$HOME/.dotfiles/setup.sh"
+#   args:
+#     chdir: "{{ lookup('env','HOME') }}/.dotfiles"
+#   tags:
+#     - initialize

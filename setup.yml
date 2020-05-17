@@ -4,6 +4,6 @@
 
   roles:
     - initialize
-    # - languages
+    - languages
     # - databases
     # - webdev

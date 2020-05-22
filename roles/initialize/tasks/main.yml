@@ -1,4 +1,4 @@
---- 
+---
 - name: Update and upgrade apt packages
   become: true
   apt:
@@ -14,6 +14,7 @@
     state: latest
     pkg:
       - cmake
+      - direnv
       - openssl
       - tree
   tags:
@@ -33,19 +34,26 @@
   tags:
     - initialize
 
-# - name: Pull down dotfiles
-#   git:
-#     force: yes
-#     accept_hostkey: yes
-#     repo: "https://github.com/genomics-geek/dotfiles-wsl-ubuntu.git"
-#     dest: "{{ lookup('env','HOME') }}/.dotfiles"
-#     version: "master"
-#   tags:
-#     - initialize
+- name: Pull down dotfiles
+  git:
+    force: yes
+    accept_hostkey: yes
+    repo: "https://github.com/genomics-geek/dotfiles-wsl-ubuntu.git"
+    dest: "{{ lookup('env','HOME') }}/.dotfiles"
+    version: "master"
+  tags:
+    - initialize
 
-# - name: initialize dot files
-#   shell: "$HOME/.dotfiles/setup.sh"
-#   args:
-#     chdir: "{{ lookup('env','HOME') }}/.dotfiles"
-#   tags:
-#     - initialize
+- name: Make setup.sh in dotfiles executable if it is not already
+  file:
+    path: "{{ lookup('env','HOME') }}/.dotfiles/setup.sh"
+    mode: '0755'
+  tags:
+    - initialize
+
+- name: initialize dot files
+  shell: "$HOME/.dotfiles/setup.sh"
+  args:
+    chdir: "{{ lookup('env','HOME') }}/.dotfiles"
+  tags:
+    - initialize

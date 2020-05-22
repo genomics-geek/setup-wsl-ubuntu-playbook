@@ -15,6 +15,7 @@
     pkg:
       - cmake
       - direnv
+      - libnotify-bin
       - openssl
       - tree
   tags:

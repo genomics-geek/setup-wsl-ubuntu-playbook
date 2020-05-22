@@ -1,0 +1,45 @@
+---
+- name: install postgres packages
+  become: true
+  apt:
+    state: latest
+    pkg:
+      - postgresql 
+      - postgresql-contrib
+  tags:
+    - databases
+    - postgres
+
+# NOTE: need to run sudo /etc/init.d/mysql start AND sudo mysql_secure_installation to finalize installation later
+- name: install mysql packages
+  become: true
+  apt:
+    state: latest
+    pkg:
+      - mysql-server 
+  tags:
+    - databases
+    - mysql
+
+# NOTE: See this for more info: https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-18-04
+- name: install redis packages
+  become: true
+  apt:
+    state: latest
+    pkg:
+      - redis-server 
+  tags:
+    - databases
+    - redis
+
+- name: install memcached packages
+  become: true
+  apt:
+    state: latest
+    pkg:
+      - memcached
+      - libmemcached-tools
+  tags:
+    - databases
+    - memcached
+     

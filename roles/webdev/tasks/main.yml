@@ -1,0 +1,53 @@
+--- 
+- name: install node packages
+  become: true
+  apt:
+    state: latest
+    pkg:
+      - nodejs
+      - npm
+      - build-essential
+  tags:
+    - webdev
+
+- name: install nvm
+  shell: >
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+  args:
+    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+  tags:
+    - webdev
+
+- name: Add an Apt signing key, uses whichever key is at the URL
+  become: true
+  apt_key:
+    url: https://dl.yarnpkg.com/debian/pubkey.gpg
+    state: present
+  tags:
+    - webdev
+
+- name: Update and upgrade apt packages
+  become: true
+  apt:
+    upgrade: yes
+    update_cache: yes
+    cache_valid_time: 86400
+  tags:
+    - webdev
+
+- name: install yarn packages
+  become: true
+  apt:
+    state: latest
+    pkg: yarn
+    install_recommends: no
+  tags:
+    - webdev
+
+- name: install nginx packages
+  become: true
+  apt:
+    state: latest
+    pkg: nginx
+  tags:
+    - webdev
